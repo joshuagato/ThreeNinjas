@@ -1,23 +1,23 @@
 <script setup>
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head, Link, useForm, usePage } from '@inertiajs/vue3';
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
+import { Head, Link, useForm, usePage } from "@inertiajs/vue3";
 // import { usePage } from '@inertiajs/inertia-vue3';
-import { onMounted, watch, ref } from 'vue';
-import { Inertia } from '@inertiajs/inertia';
-import { toast } from 'vue3-toastify';
-import 'vue3-toastify/dist/index.css';
-import axios from '../axiosConfig';
-import Dashboard from './Dashboard/Dashboard.vue';
-import Buttons from './Dashboard/Buttons.vue';
-import Banners from './Dashboard/Banners.vue';
-import Tips from './Dashboard/Tips.vue';
-import Fixtures from './Dashboard/Fixtures.vue';
-import Leagues from './Dashboard/Leagues.vue';
-import Users from './Dashboard/Users.vue';
-import WhiteNinja from './Dashboard/WhiteNinja.vue';
-import BlackNinja from './Dashboard/BlackNinja.vue';
-import RedNinja from './Dashboard/RedNinja.vue';
-import PreviousResult from './Dashboard/PreviousResult.vue';
+import { onMounted, watch, ref } from "vue";
+// import { Inertia } from '@inertiajs/inertia';
+import { toast } from "vue3-toastify";
+import "vue3-toastify/dist/index.css";
+import axios from "../axiosConfig";
+import Dashboard from "./Dashboard/Dashboard.vue";
+import Buttons from "./Dashboard/Buttons.vue";
+import Banners from "./Dashboard/Banners.vue";
+import Tips from "./Dashboard/Tips.vue";
+import Fixtures from "./Dashboard/Fixtures.vue";
+import Leagues from "./Dashboard/Leagues.vue";
+import Users from "./Dashboard/Users.vue";
+import WhiteNinja from "./Dashboard/WhiteNinja.vue";
+import BlackNinja from "./Dashboard/BlackNinja.vue";
+import RedNinja from "./Dashboard/RedNinja.vue";
+import PreviousResult from "./Dashboard/PreviousResult.vue";
 // import Betcode from './Dashboard/Betcode.vue';
 
 onMounted(() => {
@@ -26,12 +26,16 @@ onMounted(() => {
     const closeBtn = document.querySelector("#close-btn");
     const themeToggler = document.querySelector(".theme-toggler");
 
-    if (document.body.classList.value==="dark-theme-variables") {
-        themeToggler.querySelector('span:nth-child(1)').classList.remove('active');
-        themeToggler.querySelector('span:nth-child(2)').classList.add('active');
+    if (document.body.classList.value === "dark-theme-variables") {
+        themeToggler
+            .querySelector("span:nth-child(1)")
+            .classList.remove("active");
+        themeToggler.querySelector("span:nth-child(2)").classList.add("active");
     } else {
-        themeToggler.querySelector('span:nth-child(2)').classList.remove('active');
-        themeToggler.querySelector('span:nth-child(1)').classList.add('active');
+        themeToggler
+            .querySelector("span:nth-child(2)")
+            .classList.remove("active");
+        themeToggler.querySelector("span:nth-child(1)").classList.add("active");
     }
 
     // show sidebar
@@ -48,30 +52,34 @@ onMounted(() => {
     themeToggler?.addEventListener("click", () => {
         document.body.classList.toggle("dark-theme-variables");
 
-        themeToggler.querySelector('span:nth-child(1)').classList.toggle('active');
-        themeToggler.querySelector('span:nth-child(2)').classList.toggle('active');
+        themeToggler
+            .querySelector("span:nth-child(1)")
+            .classList.toggle("active");
+        themeToggler
+            .querySelector("span:nth-child(2)")
+            .classList.toggle("active");
     });
 });
 
-const displayMessage = (message, type) => toast(message, { autoClose: 1000, type });
+const displayMessage = (message, type) =>
+    toast(message, { autoClose: 1000, type });
 
-const dashboardUrl = '/dashboard';
-const usersUrl = '/dashboard/users';
-const whiteNinjaUrl = '/dashboard/white-ninja';
-const redNinjaUrl = '/dashboard/red-ninja';
-const blackNinjaUrl = '/dashboard/black-ninja';
-const previousResultUrl = '/dashboard/previous-result';
-const leaguesUrl = '/dashboard/leagues';
-const fixturesUrl = '/dashboard/fixtures';
-const tipsUrl = '/dashboard/tips';
-const bannersUrl = '/dashboard/banners';
-const buttonsUrl = '/dashboard/buttons';
+const dashboardUrl = "/dashboard";
+const usersUrl = "/dashboard/users";
+const whiteNinjaUrl = "/dashboard/white-ninja";
+const redNinjaUrl = "/dashboard/red-ninja";
+const blackNinjaUrl = "/dashboard/black-ninja";
+const previousResultUrl = "/dashboard/previous-result";
+const leaguesUrl = "/dashboard/leagues";
+const fixturesUrl = "/dashboard/fixtures";
+const tipsUrl = "/dashboard/tips";
+const bannersUrl = "/dashboard/banners";
+const buttonsUrl = "/dashboard/buttons";
 // const betcodeUrl = '/dashboard/betcodes';
 
 const { url } = usePage();
 const stateUrl = ref(null);
 stateUrl.value = url;
-
 </script>
 
 <template>
@@ -89,31 +97,54 @@ stateUrl.value = url;
                     </div>
                 </div>
                 <div class="sidebar">
-                    <Link href="/dashboard" :class="{ 'active': $page.url === dashboardUrl }">
+                    <Link
+                        href="/dashboard"
+                        :class="{ active: $page.url === dashboardUrl }"
+                    >
                         <span class="material-icons-sharp">grid_view</span>
                         <h3>Dashboard</h3>
                     </Link>
-                    <Link href="/dashboard/users" :class="{ 'active': $page.url.includes(usersUrl) }">
+                    <Link
+                        href="/dashboard/users"
+                        :class="{ active: $page.url.includes(usersUrl) }"
+                    >
                         <span class="material-icons-sharp">account_circle</span>
                         <h3>Users</h3>
                     </Link>
-                    <Link href="/dashboard/white-ninja" :class="{ 'active': $page.url.includes(whiteNinjaUrl) }">
+                    <Link
+                        href="/dashboard/white-ninja"
+                        :class="{ active: $page.url.includes(whiteNinjaUrl) }"
+                    >
                         <span class="material-icons-sharp">person_outline</span>
                         <h3>White Ninja</h3>
                     </Link>
-                    <Link href="/dashboard/red-ninja" :class="{ 'active': $page.url.includes(redNinjaUrl) }">
+                    <Link
+                        href="/dashboard/red-ninja"
+                        :class="{ active: $page.url.includes(redNinjaUrl) }"
+                    >
                         <span class="material-icons-sharp">grid_view</span>
                         <h3>Red Ninja</h3>
                     </Link>
-                    <Link href="/dashboard/black-ninja" :class="{ 'active': $page.url.includes(blackNinjaUrl) }">
+                    <Link
+                        href="/dashboard/black-ninja"
+                        :class="{ active: $page.url.includes(blackNinjaUrl) }"
+                    >
                         <span class="material-icons-sharp">person_add</span>
                         <h3>Black Ninja</h3>
                     </Link>
-                    <Link href="/dashboard/previous-results" :class="{ 'active': $page.url.includes(previousResultUrl) }">
+                    <Link
+                        href="/dashboard/previous-results"
+                        :class="{
+                            active: $page.url.includes(previousResultUrl),
+                        }"
+                    >
                         <span class="material-icons-sharp">preview</span>
                         <h3>Previous Results</h3>
                     </Link>
-                    <Link href="/dashboard/leagues" :class="{ 'active': $page.url.includes(leaguesUrl) }">
+                    <Link
+                        href="/dashboard/leagues"
+                        :class="{ active: $page.url.includes(leaguesUrl) }"
+                    >
                         <span class="material-icons-sharp">insights</span>
                         <h3>Leagues</h3>
                     </Link>
@@ -121,15 +152,26 @@ stateUrl.value = url;
                         <span class="material-icons-sharp">settings</span>
                         <h3>Fixtures</h3>
                     </Link> -->
-                    <Link href="/dashboard/tips" :class="{ 'active': $page.url.includes(tipsUrl) }">
+                    <Link
+                        href="/dashboard/tips"
+                        :class="{ active: $page.url.includes(tipsUrl) }"
+                    >
                         <span class="material-icons-sharp">analytics</span>
                         <h3>Tips</h3>
                     </Link>
-                    <Link href="/dashboard/banners" :class="{ 'active': $page.url.includes(bannersUrl) }">
-                        <span class="material-icons-sharp">stay_current_landscape</span>
+                    <Link
+                        href="/dashboard/banners"
+                        :class="{ active: $page.url.includes(bannersUrl) }"
+                    >
+                        <span class="material-icons-sharp"
+                            >stay_current_landscape</span
+                        >
                         <h3>Banners</h3>
                     </Link>
-                    <Link href="/dashboard/buttons" :class="{ 'active': $page.url.includes(buttonsUrl) }">
+                    <Link
+                        href="/dashboard/buttons"
+                        :class="{ active: $page.url.includes(buttonsUrl) }"
+                    >
                         <span class="material-icons-sharp">smart_button</span>
                         <h3>Buttons</h3>
                     </Link>
@@ -150,46 +192,27 @@ stateUrl.value = url;
             <!-- End of aside -->
 
             <article>
-                <Dashboard v-if="$page.url === dashboardUrl">
+                <Dashboard v-if="$page.url === dashboardUrl"> </Dashboard>
 
-                </Dashboard>
-
-                <Users v-if="$page.url.startsWith(usersUrl)">
-
-                </Users>
+                <Users v-if="$page.url.startsWith(usersUrl)"> </Users>
 
                 <WhiteNinja v-if="$page.url.startsWith(whiteNinjaUrl)">
-
                 </WhiteNinja>
 
-                <RedNinja v-if="$page.url.startsWith(redNinjaUrl)">
-
-                </RedNinja>
+                <RedNinja v-if="$page.url.startsWith(redNinjaUrl)"> </RedNinja>
 
                 <BlackNinja v-if="$page.url.startsWith(blackNinjaUrl)">
-
                 </BlackNinja>
 
                 <PreviousResult v-if="$page.url.startsWith(previousResultUrl)">
-
                 </PreviousResult>
 
-                <Leagues v-if="$page.url.startsWith(leaguesUrl)">
+                <Leagues v-if="$page.url.startsWith(leaguesUrl)"> </Leagues>
 
-                </Leagues>
-
-                <Fixtures v-if="$page.url.startsWith(fixturesUrl)">
-
-                </Fixtures>
-                <Tips v-if="$page.url.startsWith(tipsUrl)">
-
-                </Tips>
-                <Banners v-if="$page.url.startsWith(bannersUrl)">
-
-                </Banners>
-                <Buttons v-if="$page.url.startsWith(buttonsUrl)">
-
-                </Buttons>
+                <Fixtures v-if="$page.url.startsWith(fixturesUrl)"> </Fixtures>
+                <Tips v-if="$page.url.startsWith(tipsUrl)"> </Tips>
+                <Banners v-if="$page.url.startsWith(bannersUrl)"> </Banners>
+                <Buttons v-if="$page.url.startsWith(buttonsUrl)"> </Buttons>
                 <!-- <Betcode v-if="$page.url.startsWith(betcodeUrl)">
 
                 </Betcode> -->
@@ -199,7 +222,7 @@ stateUrl.value = url;
 </template>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 /* * {
     margin: 0;
@@ -213,12 +236,16 @@ stateUrl.value = url;
 } */
 
 .fade-in {
-  animation: fadeIn 0.6s ease-in-out;
+    animation: fadeIn 0.6s ease-in-out;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 .heading-2 {
@@ -236,7 +263,6 @@ stateUrl.value = url;
     overflow-x: hidden;
 }
 
-
 .container {
     display: grid;
     width: 100%;
@@ -251,7 +277,7 @@ a {
 
 img {
     display: block;
-    width: 100%
+    width: 100%;
 }
 
 h1 {
